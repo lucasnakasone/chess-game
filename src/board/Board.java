@@ -1,42 +1,47 @@
 package board;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Board {
-	private int rows;
-	private int columns;
-	private List<Piece> pieces = new ArrayList<>();
+	private int rows = 8;
+	private int columns = 8;
+	private Piece[][] pieces = new Piece[rows][columns];
 	
-	public Board() {
+	public Board() {	
 	}
 
-	public Piece piece(int row, int columns) throws BoardException{
-		throw new BoardException("Not implemented yet.");
+	public Piece piece(int row, int columns) {
+		return pieces[row][columns];
 	}
 	
-	public Piece piece(Position position) throws BoardException {
-		throw new BoardException("Not implemented yet.");
+	public Piece piece(Position position) {
+		return pieces[position.getRow()][position.getColumn()];
 	}
 	
-	public void plaecPiece(Piece piece, Position position) throws BoardException {
-		throw new BoardException("Not implemented yet.");
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece;
 	}
 	
-	public Piece placePiece(Piece piece, Position position) throws BoardException {
-		throw new BoardException("Not implemented yet.");
+	public Piece removePiece(Position position) {
+		Piece removedPiece = pieces[position.getRow()][position.getColumn()];
+		pieces[position.getRow()][position.getColumn()] = null;
+		return removedPiece;
 	}
 	
-	public Piece removePiece(Position position) throws BoardException {
-		throw new BoardException("Not implemented yet.");
+	public boolean positionExists(Position position) {
+		if (position.getRow() > 8 || position.getRow() < 0) {
+			return false;
+		} else if (position.getColumn() > 8 || position.getColumn() < 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
-	public boolean positionExists(Position position) throws BoardException {
-		throw new BoardException("Not implemented yet.");
-	}
-	
-	public boolean thereIsAPiece(Position position) throws BoardException {
-		throw new BoardException("Not implemented yet.");
+	public boolean thereIsAPiece(Position position) {
+		if (pieces[position.getRow()][position.getColumn()] != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
