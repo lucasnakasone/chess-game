@@ -5,9 +5,9 @@ public class Board {
 	private int columns = 8;
 	private Piece[][] pieces = new Piece[rows][columns];
 	
-	public Board() {	
+	public Board() {
 	}
-
+	
 	public Piece piece(int row, int columns) {
 		return pieces[row][columns];
 	}
