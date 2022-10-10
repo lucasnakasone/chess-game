@@ -1,8 +1,5 @@
 package application;
 
-import board.Board;
-import board.Position;
-
 public class Program {
 	public static void main (String[] args) {
 	
