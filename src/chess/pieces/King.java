@@ -7,6 +7,8 @@ import chess.Color;
 
 public class King extends ChessPiece{
 
+	private String name = "King";
+	
 	public King(Board board, Color color) throws BoardException {
 		super(board, color);
 		// TODO Auto-generated constructor stub
@@ -19,8 +21,12 @@ public class King extends ChessPiece{
 
 	@Override
 	public boolean[][] possibleMoves() {
-		// TODO Auto-generated method stub
-		return null;
+		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+		return mat;
 	}
 
+	@Override
+	public String getName() {
+		return name;
+	}
 }
