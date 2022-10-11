@@ -2,6 +2,8 @@ package chess;
 
 import board.Board;
 import board.BoardException;
+import board.Piece;
+import board.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
@@ -29,7 +31,7 @@ public class ChessMatch {
 		return chessBoard;
 	}
 	
-	private void placeNewPiece(char column, int row, ChessPiece piece) throws BoardException, ChessException {
+	private void placeNewPiece(char column, int row, ChessPiece piece) throws BoardException {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
 	}
 
@@ -41,6 +43,27 @@ public class ChessMatch {
 		placeNewPiece('a', 1, new Rook(board, Color.WHITE));
 		placeNewPiece('h', 1, new Rook(board, Color.WHITE));
 		placeNewPiece('e', 1, new King(board, Color.WHITE));
+	}
+	
+	public ChessPiece performChessMove (ChessPosition sourcePosition, ChessPosition targetPosition) throws BoardException {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		validateSourcePosition(source);
+		Piece capturedPiece = makeMove(source, target);
+		return (ChessPiece) capturedPiece;
+	}
+	
+	private Piece makeMove(Position source, Position target) throws BoardException {
+		Piece p = board.removePiece(source);
+		Piece capturedPiece = board.removePiece(target);
+		board.placePiece(p, target);
+		return capturedPiece;
+	}
+	
+	public void validateSourcePosition(Position position) throws BoardException {
+		if (!board.thereIsAPiece(position)) {
+			throw new ChessException("No piece in source position.");
+		}
 	}
 	
 	@Override
