@@ -1,6 +1,10 @@
 package chess;
 
 import board.Board;
+import board.BoardException;
+import board.Position;
+import chess.pieces.King;
+import chess.pieces.Rook;
 
 public class ChessMatch {
 	private int turn;
@@ -11,8 +15,9 @@ public class ChessMatch {
 	private ChessPiece promoted;
 	private Board board;
 	
-	public ChessMatch() {
+	public ChessMatch() throws BoardException {
 		board = new Board();
+		initialSetup();
 	}
 	
 	public ChessPiece[][] getPieces(){
@@ -25,6 +30,15 @@ public class ChessMatch {
 		return chessBoard;
 	}
 
+	private void initialSetup() throws BoardException {
+		board.placePiece(new Rook(board, Color.BLACK), new Position(0, 0));;
+		board.placePiece(new Rook(board, Color.BLACK), new Position(0, 7));;
+		board.placePiece(new Rook(board, Color.WHITE), new Position(7, 0));;
+		board.placePiece(new Rook(board, Color.WHITE), new Position(7, 7));;
+		board.placePiece(new King(board, Color.BLACK), new Position(0, 4));;
+		board.placePiece(new King(board, Color.WHITE), new Position(7, 4));;
+	}
+	
 	@Override
 	public String toString() {
 		return "ChessMatch [turn=" + turn + ", currentPlayer=" + currentPlayer + ", check=" + check + ", checkMate="

@@ -7,12 +7,11 @@ import board.Position;
 
 public abstract class ChessPiece extends Piece{
 	private Color color;
-	private int moveCount;
+	private int moveCount = 0;
 
-	public ChessPiece(Board board, Color color, int moveCount) throws BoardException {
+	public ChessPiece(Board board, Color color) throws BoardException {
 		super(board);
 		this.color = color;
-		this.moveCount = moveCount;
 	}
 
 	public ChessPosition getChessPosition() throws ChessException {

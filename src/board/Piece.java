@@ -5,7 +5,8 @@ public abstract class Piece {
 	private Board board;
 	
 	public Piece(Board board) throws BoardException {
-		throw new BoardException("Not implemented yet.");
+		this.board = board;
+		position = null;
 	}
 
 	public abstract boolean[][] possibleMoves();
