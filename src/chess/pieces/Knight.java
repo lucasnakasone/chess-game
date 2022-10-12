@@ -1,19 +1,20 @@
- package chess.pieces;
+package chess.pieces;
 
 import board.Board;
 import board.BoardException;
 import chess.ChessPiece;
 import chess.Color;
 
-public class Rook extends ChessPiece{
+public class Knight extends ChessPiece{
+private String name = "Knight";
 	
-	public Rook (Board board, Color color) throws BoardException {
+	public Knight(Board board, Color color) throws BoardException {
 		super(board, color);
 	}
 
 	@Override
 	public String toString() {
-		return "R";
+		return "N";
 	}
 
 	@Override
@@ -24,6 +25,6 @@ public class Rook extends ChessPiece{
 
 	@Override
 	public String getName() {
-		return "Rook";
+		return name;
 	}
 }

@@ -6,8 +6,6 @@ import chess.ChessPiece;
 import chess.Color;
 
 public class King extends ChessPiece{
-
-	private String name = "King";
 	
 	public King(Board board, Color color) throws BoardException {
 		super(board, color);
@@ -27,6 +25,6 @@ public class King extends ChessPiece{
 
 	@Override
 	public String getName() {
-		return name;
+		return "King";
 	}
 }
