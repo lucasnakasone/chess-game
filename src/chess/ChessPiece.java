@@ -18,8 +18,9 @@ public abstract class ChessPiece extends Piece{
 		throw new ChessException("Not implemented yet.");
 	}
 	
-	protected boolean isThereOpponentPiece (Position position) throws ChessException {
-		throw new ChessException("Not implemented yet.");
+	protected boolean isThereOpponentPiece (Position position) throws BoardException {
+		ChessPiece p = (ChessPiece) getBoard().piece(position);
+		return p != null && p.getColor() != color;
 	}
 	
 	protected void increaseMoveCount() throws ChessException {

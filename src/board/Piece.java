@@ -9,13 +9,13 @@ public abstract class Piece {
 		position = null;
 	}
 
-	public abstract boolean[][] possibleMoves();
+	public abstract boolean[][] possibleMoves() throws BoardException;
 	
-	public boolean possibleMove(Position position) {
+	public boolean possibleMove(Position position) throws BoardException {
 		return possibleMoves()[position.getRow()][position.getColumn()];
 	}
 	
-	public boolean isThereAnyPossibleMove() {
+	public boolean isThereAnyPossibleMove() throws BoardException {
 		boolean[][] mat = possibleMoves();
 		for (int i = 0; i < mat.length; i++) {
 			for (int j = 0; j < mat.length; j++) {

@@ -6,7 +6,7 @@ import chess.ChessPiece;
 import chess.Color;
 
 public class Knight extends ChessPiece{
-private String name = "Knight";
+	private String name = "Knight";
 	
 	public Knight(Board board, Color color) throws BoardException {
 		super(board, color);
