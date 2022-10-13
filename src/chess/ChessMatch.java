@@ -22,6 +22,8 @@ public class ChessMatch {
 	
 	public ChessMatch() throws BoardException, ChessException {
 		board = new Board();
+		turn = 1;
+		currentPlayer = Color.WHITE;
 		initialSetup();
 	}
 	
@@ -71,11 +73,11 @@ public class ChessMatch {
 		placeNewPiece('g', 1, new Bishop(board, Color.WHITE));
 		placeNewPiece('c', 1, new Knight(board, Color.WHITE));
 		placeNewPiece('f', 1, new Knight(board, Color.WHITE));
-		//placeNewPiece('a', 2, new Pawn(board, Color.WHITE));
+		placeNewPiece('a', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('b', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('c', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('d', 2, new Pawn(board, Color.WHITE));
-		//placeNewPiece('e', 2, new Pawn(board, Color.WHITE));
+		placeNewPiece('e', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('f', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('g', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('h', 2, new Pawn(board, Color.WHITE));
@@ -87,6 +89,7 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
+		nextTurn();
 		return (ChessPiece) capturedPiece;
 	}
 	
@@ -100,6 +103,9 @@ public class ChessMatch {
 	public void validateSourcePosition(Position position) throws BoardException {
 		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("No piece in source position.");
+		}
+		if (currentPlayer != ((ChessPiece) board.piece(position)).getColor()) {
+			throw new ChessException("The chosen piece is not yours.");
 		}
 		if (!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There are no possible moves for your " + board.piece(position).getName() + ".");
@@ -118,9 +124,19 @@ public class ChessMatch {
 				+ checkMate + ", enPassantVulnerable=" + enPassantVulnerable + ", promoted=" + promoted + ", board="
 				+ board + "]";
 	}
-	
-	
-	
-	
+
+	public void nextTurn() {
+		turn++;
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
+
+	public int getTurn() {
+		return turn;
+	}
+
+	public Color getCurrentPlayer() {
+		return currentPlayer;
+	}
+
 	
 }

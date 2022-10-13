@@ -3,7 +3,9 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import board.BoardException;
 import chess.ChessException;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -43,6 +45,13 @@ public class UI {
 		} catch (RuntimeException e){
 			throw new InputMismatchException("Error reading ChessPosition, valid values from A1 to H8");
 		}
+	}
+	
+	public static void printMatch (ChessMatch chessMatch) throws BoardException {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn " + chessMatch.getTurn());
+		System.out.println("Waiting for " + chessMatch.getCurrentPlayer() + " player...");
 	}
 	
 	public static void printBoard(ChessPiece[][] pieces) {
