@@ -1,5 +1,8 @@
 package chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import board.Board;
 import board.BoardException;
 import board.Piece;
@@ -19,6 +22,8 @@ public class ChessMatch {
 	private ChessPiece enPassantVulnerable;
 	private ChessPiece promoted;
 	private Board board;
+	private List<Piece> piecesOnTheBoard = new ArrayList<>();
+	private List<Piece> capturedPieces = new ArrayList<>();
 	
 	public ChessMatch() throws BoardException, ChessException {
 		board = new Board();
@@ -37,16 +42,6 @@ public class ChessMatch {
 		return chessBoard;
 	}
 	
-	public boolean[][] possibleMoves(ChessPosition sourcePosition) throws BoardException {
-		Position position = sourcePosition.toPosition();
-		validateSourcePosition(position);
-		return board.piece(position).possibleMoves();
-	}
-	
-	private void placeNewPiece(char column, int row, ChessPiece piece) throws BoardException {
-		board.placePiece(piece, new ChessPosition(column, row).toPosition());
-	}
-
 	private void initialSetup() throws ChessException, BoardException {
 		placeNewPiece('a', 8, new Rook(board, Color.BLACK));
 		placeNewPiece('h', 8, new Rook(board, Color.BLACK));
@@ -73,14 +68,25 @@ public class ChessMatch {
 		placeNewPiece('g', 1, new Bishop(board, Color.WHITE));
 		placeNewPiece('c', 1, new Knight(board, Color.WHITE));
 		placeNewPiece('f', 1, new Knight(board, Color.WHITE));
-		placeNewPiece('a', 2, new Pawn(board, Color.WHITE));
+		//placeNewPiece('a', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('b', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('c', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('d', 2, new Pawn(board, Color.WHITE));
-		placeNewPiece('e', 2, new Pawn(board, Color.WHITE));
+		//placeNewPiece('e', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('f', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('g', 2, new Pawn(board, Color.WHITE));
 		placeNewPiece('h', 2, new Pawn(board, Color.WHITE));
+	}
+	
+	public boolean[][] possibleMoves(ChessPosition sourcePosition) throws BoardException {
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();
+	}
+	
+	private void placeNewPiece(char column, int row, ChessPiece piece) throws BoardException {
+		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+		piecesOnTheBoard.add(piece);
 	}
 	
 	public ChessPiece performChessMove (ChessPosition sourcePosition, ChessPosition targetPosition) throws BoardException {
@@ -97,6 +103,10 @@ public class ChessMatch {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
+		if (capturedPiece != null) {
+			piecesOnTheBoard.remove(capturedPiece);
+			capturedPieces.add(capturedPiece);
+		}
 		return capturedPiece;
 	}
 	
