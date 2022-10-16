@@ -15,7 +15,7 @@ public abstract class ChessPiece extends Piece{
 	}
 
 	public ChessPosition getChessPosition() throws ChessException {
-		throw new ChessException("Not implemented yet.");
+		return ChessPosition.fromPosition(position);
 	}
 	
 	protected boolean isThereOpponentPiece (Position position) throws BoardException {
