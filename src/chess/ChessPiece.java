@@ -7,7 +7,7 @@ import board.Position;
 
 public abstract class ChessPiece extends Piece{
 	private Color color;
-	private int moveCount = 0;
+	private int moveCount;
 
 	public ChessPiece(Board board, Color color) throws BoardException {
 		super(board);
@@ -23,12 +23,12 @@ public abstract class ChessPiece extends Piece{
 		return p != null && p.getColor() != color;
 	}
 	
-	protected void increaseMoveCount() throws ChessException {
-		throw new ChessException("Not implemented yet.");
+	protected void increaseMoveCount() {
+		moveCount++;
 	}
 	
-	protected void decreaseMoveCount() throws ChessException {
-		throw new ChessException("Not implemented yet.");
+	protected void decreaseMoveCount() {
+		moveCount--;
 	}
 
 	public Color getColor() {
