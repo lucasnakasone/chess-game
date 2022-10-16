@@ -37,4 +37,4 @@ public class ChessPosition {
 		return row;
 	}
 
-}	
+}
