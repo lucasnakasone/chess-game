@@ -3,14 +3,17 @@ package chess.pieces;
 import board.Board;
 import board.BoardException;
 import board.Position;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.Color;
 
 public class King extends ChessPiece{
 	
+	//private ChessMatch chessMatch;
+	
 	public King(Board board, Color color) throws BoardException {
 		super(board, color);
-		// TODO Auto-generated constructor stub
+		//this.chessMatch = chessMatch;
 	}
 
 	@Override

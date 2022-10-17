@@ -27,9 +27,15 @@ public class Knight extends ChessPiece{
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
 		//Check up-left
 		p.setValues(position.getRow() - 2 , position.getColumn() - 1);
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		//Check down-right
@@ -37,9 +43,15 @@ public class Knight extends ChessPiece{
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
 		//Check down-left
 		p.setValues(position.getRow() + 2 , position.getColumn() - 1);
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		//Check right-up
@@ -47,9 +59,15 @@ public class Knight extends ChessPiece{
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
 		//Check right-down
 		p.setValues(position.getRow() + 1 , position.getColumn() + 2);
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		//Check left-up
@@ -57,9 +75,15 @@ public class Knight extends ChessPiece{
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
 		//Check left-down
 		p.setValues(position.getRow() + 1 , position.getColumn() - 2);
 		if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
